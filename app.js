@@ -2,6 +2,7 @@
 
 //array to store all Busmall image instances
 Images.allBusMallImages = [];
+var numberOfClicks = 0;
 
 //make a constructor function for Images objects
 function Images(filepath, name) {
@@ -42,34 +43,42 @@ var imgEl3 = document.getElementById('busmallpic3');
 
 
 //event listener on the image
-imgEl.addEventListener('click', randomImage);
-imgEl2.addEventListener('click', randomImage);
-imgEl3.addEventListener('click', randomImage);
+imgEl.addEventListener('click', allRandomImages);
+imgEl2.addEventListener('click', allRandomImages);
+imgEl3.addEventListener('click', allRandomImages);
 
 
 //callback function for the event listener (to randomly display a goat image)
-function randomImage() {
+function allRandomImages() {
+  function randomImage() {
   //random number generator to return a number between 0 and the length of the array (Goat.allGoats)
-  var randomIndex = Math.floor(Math.random() * Images.allBusMallImages.length);
+    var randomIndex = Math.floor(Math.random() * Images.allBusMallImages.length);
+    //use the random number to display a goat at that random index
+    imgEl.src = Images.allBusMallImages[randomIndex].filepath;
+  }
+  function randomImage2() {
+    var randomIndex = Math.floor(Math.random() * Images.allBusMallImages.length);
 
+    imgEl2.src = Images.allBusMallImages[randomIndex].filepath;
+  }
+  function randomImage3() {
+    var randomIndex = Math.floor(Math.random() * Images.allBusMallImages.length);
 
-  //use the random number to display a goat at that random index
-  imgEl.src = Images.allBusMallImages[randomIndex].filepath;
+    imgEl3.src = Images.allBusMallImages[randomIndex].filepath;
+  }
+  randomImage();
+  randomImage2();
+  randomImage3();
+
+  numberOfClicks++;
+  console.log(numberOfClicks);
+
+  if (numberOfClicks === 25) {
+    alert('Thank you for your participation! Here are your results.');
+  }
 }
 
-function randomImage2() {
-  var randomIndex = Math.floor(Math.random() * Images.allBusMallImages.length);
+//invoke the callback
 
-  imgEl2.src = Images.allBusMallImages[randomIndex].filepath;
-}
 
-function randomImages3() {
-  var randomIndex = Math.floor(Math.random() * Images.allBusMallImages.length);
-
-  imgEl3.src = Images.allBusMallImages[randomIndex].filepath;
-}
-
-//invoke the callback (on page load to show a random baby goat)
-randomImage();
-randomImage2();
-randomImages3();
+allRandomImages();
