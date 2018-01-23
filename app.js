@@ -114,21 +114,21 @@ function handleClick(event) {
   if (Images.totalNumberOfClicks > 24) {
     sectionEl.removeEventListener('click', handleClick);
     alert('Thank you for your participation in our research focus group. Here are your results.');
-    //showResults();
+    showResults();
     updateVotes();
-    //renderChart();
+
   } else {
     allRandomImages();
   }
 }
 
-// function showResults() {
-//   for (var i in Images.allBusMallImages) {
-//     var liEl = document.createElement('li)');
-//     liEl.textContent = Images.allBusMallImages[i].name + ' has ' + Images.allBusMallImages[i].votes + ' votes and was displayed ' + Images.allBusMallImages[i].timesDisplayed + ' times.';
-//     ulEl.appendChild(liEl);
-//   }
-// }
+function showResults() {
+  for (var i in Images.allBusMallImages) {
+    var liEl = document.createElement('li');
+    liEl.textContent = Images.allBusMallImages[i].name + ' has ' + Images.allBusMallImages[i].votes + ' votes and was displayed ' + Images.allBusMallImages[i].timesDisplayed + ' times.';
+    ulEl.appendChild(liEl);
+  }
+}
 
 //function to update the number of votes per product
 function updateVotes() {
@@ -136,8 +136,6 @@ function updateVotes() {
     productVotes[i] = Images.allBusMallImages[i].votes;
   }
 }
-
-//chart function
 
 sectionEl.addEventListener('click', handleClick);
 
