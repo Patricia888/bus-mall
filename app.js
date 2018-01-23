@@ -61,9 +61,9 @@ var imgEl3 = document.getElementById('busmallpic3');
 
 //randomly display one of the pictures
 function allRandomImages() {
-  var randomImage1 = Math.floor(Math.random() * Goat.allGoats.length);
-  var randomImage2 = Math.floor(Math.random() * Goat.allGoats.length);
-  var randomImage3 = Math.floor(Math.random() * Goat.allGoats.length);
+  var randomImage1 = Math.floor(Math.random() * Images.allBusMallImages.length);
+  var randomImage2 = Math.floor(Math.random() * Images.allBusMallImages.length);
+  var randomImage3 = Math.floor(Math.random() * Images.allBusMallImages.length);
 
   //check to make sure each random number is unique
   //if same, generate new random numbers
@@ -76,9 +76,9 @@ function allRandomImages() {
   while (randomImage1 === randomImage2 || randomImage1 === randomImage3 || randomImage2 === randomImage3 || Images.lastDisplayed.includes(randomImage1) || Images.lastDisplayed.includes(randomImage2) || Images.lastDisplayed.includes(randomImage3)) {
     console.log('Duplicate was caught');
 
-    randomImage1 = Math.floor(Math.random() * Goat.allGoats.length);
-    randomImage2 = Math.floor(Math.random() * Goat.allGoats.length);
-    randomImage3 = Math.floor(Math.random() * Goat.allGoats.length);
+    randomImage1 = Math.floor(Math.random() * Images.allBusMallImages.length);
+    randomImage2 = Math.floor(Math.random() * Images.allBusMallImages.length);
+    randomImage3 = Math.floor(Math.random() * Images.allBusMallImages.length);
   }
   //set the src and alt attributes
   imgEl1.src = Images.allBusMallImages[randomImage1].filepath;
@@ -103,6 +103,7 @@ function allRandomImages() {
 function handleClick(event) {
   //track total number of clicks
   Images.totalNumberOfClicks += 1;
+  console.log(Images.totalNumberOfClicks);
   console.log(event.target.alt);
   //count clicks on a specific image
   for (var i in Images.allBusMallImages) {
@@ -110,23 +111,24 @@ function handleClick(event) {
       Images.allBusMallImages[i].votes += 1;
     }
   }
-  if (Images.totalNumberOfClicks > 25) {
+  if (Images.totalNumberOfClicks > 24) {
     sectionEl.removeEventListener('click', handleClick);
-    showResults();
+    alert('Thank you for your participation in our research focus group. Here are your results.');
+    //showResults();
     updateVotes();
-    renderChart();
+    //renderChart();
   } else {
     allRandomImages();
   }
 }
 
-function showResults() {
-  for (var i in Images.allBusMallImages) {
-    var liEl = document.createElement('li)');
-    liEl.textContent = Images.allBusMallImages[i].name + ' has ' + Images.allBusMallImages[i].votes + ' votes and was displayed ' + Images.allBusMallImages[i].timesDisplayed + ' times.'
-    ulEl.appendChild(liEl);
-  }
-}
+// function showResults() {
+//   for (var i in Images.allBusMallImages) {
+//     var liEl = document.createElement('li)');
+//     liEl.textContent = Images.allBusMallImages[i].name + ' has ' + Images.allBusMallImages[i].votes + ' votes and was displayed ' + Images.allBusMallImages[i].timesDisplayed + ' times.';
+//     ulEl.appendChild(liEl);
+//   }
+// }
 
 //function to update the number of votes per product
 function updateVotes() {
@@ -134,6 +136,8 @@ function updateVotes() {
     productVotes[i] = Images.allBusMallImages[i].votes;
   }
 }
+
+//chart function
 
 sectionEl.addEventListener('click', handleClick);
 
