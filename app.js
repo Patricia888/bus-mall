@@ -67,12 +67,12 @@ function allRandomImages() {
 
   //check to make sure each random number is unique
   //if same, generate new random numbers
-  //condition 1: 1 and 2 are the same                 check
-  //condition 2: 1 and 3 are the same                 check
-  //condition 3: 2 and 3 are the same                 check
-  //condition 4: 1 is in the lastDisplayed array      check
-  //condition 5: 2 is in the lastDisplayed array      check
-  //condition 6: 3 is in the lastDisplayed array
+  //condition 1: 1 and 2 are the same                     check
+  //condition 2: 1 and 3 are the same                     check
+  //condition 3: 2 and 3 are the same                     check
+  //condition 4: 1 is in the lastDisplayed array          check
+  //condition 5: 2 is in the lastDisplayed array          check
+  //condition 6: 3 is in the lastDisplayed array          check
   while (randomImage1 === randomImage2 || randomImage1 === randomImage3 || randomImage2 === randomImage3 || Images.lastDisplayed.includes(randomImage1) || Images.lastDisplayed.includes(randomImage2) || Images.lastDisplayed.includes(randomImage3)) {
     console.log('Duplicate was caught');
 
@@ -125,7 +125,7 @@ function handleClick(event) {
 function showResults() {
   for (var i in Images.allBusMallImages) {
     var liEl = document.createElement('li');
-    liEl.textContent = Images.allBusMallImages[i].name + ' has ' + Images.allBusMallImages[i].votes + ' votes and was displayed ' + Images.allBusMallImages[i].timesDisplayed + ' times.';
+    liEl.textContent = Images.allBusMallImages[i].name + ' received ' + Images.allBusMallImages[i].votes + ' votes and was displayed ' + Images.allBusMallImages[i].timesDisplayed + ' times.    ' + Images.allBusMallImages[i].votes / Images.allBusMallImages[i].timesDisplayed * 100 + '% click rate.';
     ulEl.appendChild(liEl);
   }
 }
