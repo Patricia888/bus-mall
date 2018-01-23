@@ -2,10 +2,21 @@
 
 //array to store all Busmall image instances
 Images.allBusMallImages = [];
-var totalNumberOfClicks = 0;
-var numberOfClicks1 = 0;
-var numberOfClicks2 = 0;
-var numberOfClicks3 = 0;
+Images.totalNumberOfClicks = 0;
+
+Images.lastDisplayed = [];
+
+//access the section element from DOM
+var sectionEl = document.getElementById('product-section');
+//access the ul element from DOM
+var ulEl = document.getElementById('results');
+
+//array to store names for our chart labels
+var imageNames = [];
+
+//array to store votes per product
+var productVotes = [];
+
 
 //make a constructor function for Images objects
 function Images(filepath, name) {
