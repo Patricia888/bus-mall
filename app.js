@@ -2,7 +2,10 @@
 
 //array to store all Busmall image instances
 Images.allBusMallImages = [];
-var numberOfClicks = 0;
+var totalNumberOfClicks = 0;
+var numberOfClicks1 = 0;
+var numberOfClicks2 = 0;
+var numberOfClicks3 = 0;
 
 //make a constructor function for Images objects
 function Images(filepath, name) {
@@ -55,25 +58,32 @@ function allRandomImages() {
     var randomIndex = Math.floor(Math.random() * Images.allBusMallImages.length);
     //use the random number to display a goat at that random index
     imgEl.src = Images.allBusMallImages[randomIndex].filepath;
+    numberOfClicks1++;
+    console.log('1st pic clicks: ' + numberOfClicks1);
   }
   function randomImage2() {
     var randomIndex = Math.floor(Math.random() * Images.allBusMallImages.length);
 
     imgEl2.src = Images.allBusMallImages[randomIndex].filepath;
+    numberOfClicks2++;
+    console.log('2nd pic clicks: ' + numberOfClicks2);
   }
   function randomImage3() {
     var randomIndex = Math.floor(Math.random() * Images.allBusMallImages.length);
 
     imgEl3.src = Images.allBusMallImages[randomIndex].filepath;
+    numberOfClicks3++;
+    console.log('3rd pic clicks: ' + numberOfClicks2);
   }
   randomImage();
   randomImage2();
   randomImage3();
 
-  numberOfClicks++;
-  console.log(numberOfClicks);
+  totalNumberOfClicks = numberOfClicks1 + numberOfClicks2 + numberOfClicks3;
 
-  if (numberOfClicks === 25) {
+  console.log(totalNumberOfClicks);
+
+  if (totalNumberOfClicks > 25) {
     alert('Thank you for your participation! Here are your results.');
   }
 }
