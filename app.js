@@ -103,8 +103,10 @@ function allRandomImages() {
 function handleClick(event) {
   //track total number of clicks
   Images.totalNumberOfClicks += 1;
+
   console.log(Images.totalNumberOfClicks);
   console.log(event.target.alt);
+  
   //count clicks on a specific image
   for (var i in Images.allBusMallImages) {
     if (event.target.alt === Images.allBusMallImages[i].name) {
