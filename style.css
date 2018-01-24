@@ -1,15 +1,21 @@
 body {
   padding: 20px;
+  background-color: lightslategray;
 }
 
 h1 {
   font-size: 30px;
+  position: center;
 }
 
 img {
   width: 200px;
 }
 
-h3 {
-  font-size: 18px;
+ul {
+  font-family: 'Open Sans', sans-serif;
+}
+
+li {
+  padding-bottom: 10px;
 }
