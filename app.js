@@ -115,7 +115,7 @@ function handleClick(event) {
   }
   if (Images.totalNumberOfClicks > 24) {
     sectionEl.removeEventListener('click', handleClick);
-    alert('Thank you for your participation in our research focus group. Here are your results.');
+    alert('Thank you for your participation in our research focus group. Here are your results, scroll down for the graph of selections.');
     showResults();
     updateVotes();
     renderChart();
@@ -143,7 +143,7 @@ function updateVotes() {
 function renderChart() {
   var context = document.getElementById('chart-placeholder').getContext('2d');
 
-  var chartColors = [];
+  var chartColors = ['#614126', '#907A67', '#614126', '#907A67', '#614126', '#907A67', '#614126', '#907A67', '#614126', '#907A67', '#614126', '#907A67', '#614126', '#907A67', '#614126', '#907A67', '#614126', '#907A67', '#614126', '#907A67'];
 
   var busmallChart = new Chart(context, {
     type: 'bar',
@@ -152,7 +152,7 @@ function renderChart() {
       datasets: [{
         label: 'Votes per Product',
         data: productVotes,
-        backgroundColors: chartColors,
+        backgroundColor: chartColors,
       }]
     },
     options: {
@@ -164,7 +164,7 @@ function renderChart() {
         }]
       }
     }
-  })
+  });
 }
 
 sectionEl.addEventListener('click', handleClick);
