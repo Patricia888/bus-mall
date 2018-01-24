@@ -125,7 +125,7 @@ function handleClick(event) {
 function showResults() {
   for (var i in Images.allBusMallImages) {
     var liEl = document.createElement('li');
-    liEl.textContent = Images.allBusMallImages[i].name + ' received ' + Images.allBusMallImages[i].votes + ' votes and was displayed ' + Images.allBusMallImages[i].timesDisplayed + ' times.    ' + Images.allBusMallImages[i].votes / Images.allBusMallImages[i].timesDisplayed * 100 + '% click rate.';
+    liEl.textContent = Images.allBusMallImages[i].name + ' received ' + Images.allBusMallImages[i].votes + ' votes and was displayed ' + Images.allBusMallImages[i].timesDisplayed + ' times.    ' + Math.round(Images.allBusMallImages[i].votes / Images.allBusMallImages[i].timesDisplayed * 100 * 100) / 100 + '% click rate.';
     ulEl.appendChild(liEl);
   }
 }
