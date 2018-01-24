@@ -115,10 +115,10 @@ function handleClick(event) {
   }
   if (Images.totalNumberOfClicks > 24) {
     sectionEl.removeEventListener('click', handleClick);
-    alert('Thank you for your participation in our research focus group. Here are your results.');
+    alert('Thank you for your participation in our research focus group. Here are your results, scroll down for the graph of selections.');
     showResults();
     updateVotes();
-
+    renderChart();
   } else {
     allRandomImages();
   }
@@ -137,6 +137,34 @@ function updateVotes() {
   for(var i in Images.allBusMallImages) {
     productVotes[i] = Images.allBusMallImages[i].votes;
   }
+}
+
+//function to render chart
+function renderChart() {
+  var context = document.getElementById('chart-placeholder').getContext('2d');
+
+  var chartColors = ['#614126', '#907A67', '#614126', '#907A67', '#614126', '#907A67', '#614126', '#907A67', '#614126', '#907A67', '#614126', '#907A67', '#614126', '#907A67', '#614126', '#907A67', '#614126', '#907A67', '#614126', '#907A67'];
+
+  var busmallChart = new Chart(context, {
+    type: 'bar',
+    data: {
+      labels: imageNames,
+      datasets: [{
+        label: 'Votes per Product',
+        data: productVotes,
+        backgroundColor: chartColors,
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
 }
 
 sectionEl.addEventListener('click', handleClick);
