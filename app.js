@@ -142,6 +142,29 @@ function updateVotes() {
 //function to render chart
 function renderChart() {
   var context = document.getElementById('chart-placeholder').getContext('2d');
+
+  var chartColors = [];
+
+  var busmallChart = new Chart(context, {
+    type: 'bar',
+    data: {
+      labels: imageNames,
+      datasets: [{
+        label: 'Votes per Product',
+        data: productVotes,
+        backgroundColors: chartColors,
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  })
 }
 
 sectionEl.addEventListener('click', handleClick);
