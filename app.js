@@ -118,7 +118,7 @@ function handleClick(event) {
     alert('Thank you for your participation in our research focus group. Here are your results.');
     showResults();
     updateVotes();
-
+    renderChart();
   } else {
     allRandomImages();
   }
@@ -137,6 +137,11 @@ function updateVotes() {
   for(var i in Images.allBusMallImages) {
     productVotes[i] = Images.allBusMallImages[i].votes;
   }
+}
+
+//function to render chart
+function renderChart() {
+  var context = document.getElementById('chart-placeholder').getContext('2d');
 }
 
 sectionEl.addEventListener('click', handleClick);
