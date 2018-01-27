@@ -129,6 +129,7 @@ function showResults() {
     var liEl = document.createElement('li');
     liEl.textContent = Images.allBusMallImages[i].name + ' received ' + Images.allBusMallImages[i].votes + ' votes and was displayed ' + Images.allBusMallImages[i].timesDisplayed + ' times.    ' + Math.round(Images.allBusMallImages[i].votes / Images.allBusMallImages[i].timesDisplayed * 100 * 100) / 100 + '% click rate.';
     ulEl.appendChild(liEl);
+
   }
 }
 
@@ -137,7 +138,26 @@ function updateVotes() {
   for(var i in Images.allBusMallImages) {
     productVotes[i] = Images.allBusMallImages[i].votes;
   }
+
+  //LOCAL STORAGE
+  var multipleSurveysTotal = [];
+
+  if (localStorage.votesInStorage) {
+    for (var j = 0; j < productVotes.length; j++) {
+
+      multipleSurveysTotal[j] = productVotes[j] + JSON.parse(localStorage.votesInStorage)[j];
+    }
+  } else {
+    multipleSurveysTotal = productVotes;
+  }
+  localStorage.votesInStorage = JSON.stringify(multipleSurveysTotal);
 }
+
+//LOCAL STORAGE
+// var multipleSurveysTotal = productVotes + JSON.parse(localStorage.votesInStorage);
+//parse localStorage.votesInStorage
+
+//2. replace productVotes in chart data with multipleSurveysTotal
 
 //function to render chart
 function renderChart() {
@@ -151,7 +171,7 @@ function renderChart() {
       labels: imageNames,
       datasets: [{
         label: 'Votes per Product',
-        data: productVotes,
+        data: JSON.parse(localStorage.votesInStorage),
         backgroundColor: chartColors,
       }]
     },
@@ -161,6 +181,11 @@ function renderChart() {
           ticks: {
             beginAtZero: true
           }
+        }],
+        xAxes: [{
+          ticks: {
+            autoSkip: false
+          }
         }]
       }
     }
@@ -169,5 +194,5 @@ function renderChart() {
 
 sectionEl.addEventListener('click', handleClick);
 
-
 allRandomImages();
+
